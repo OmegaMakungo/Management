@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Contacts</h2>
+{% if contacts %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email Address</th>
+                <th>No. of Linked Clients</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.surname }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.clients|length }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No contact(s) found.</p>
+{% endif %}
+<a href="{{ url_for('new_contact') }}" class="btn btn-primary">Add New Contact</a>
+{% endblock %}

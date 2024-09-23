@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Clients</h2>
+{% if clients %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Client Code</th>
+                <th>No. of Linked Contacts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.name }}</td>
+                <td>{{ client.client_code }}</td>
+                <td>{{ client.contacts|length }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No client(s) found.</p>
+{% endif %}
+<a href="{{ url_for('new_client') }}" class="btn btn-primary">Add New Client</a>
+{% endblock %}
